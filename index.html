@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Lucas Miranda Vidal">
+    <title>Project: COE Integral Management System - DHL</title>
+
+    <!-- FIX PARA GITHUB PAGES: Establece la ruta base para todos los recursos (assets, download) -->
+    <!-- ESTO es el nombre de tu repositorio: /Proyecto-COE-html/ -->
+    <base href="/Proyecto-COE-html/">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --dhl-red: #D40511;
+            --dhl-yellow: #FFCC00;
+            --dhl-blue: #003366;
+            --text-dark: #2d3748;
+            --white: #ffffff;
+        }
+        html, body {
+            margin: 0; padding: 0;
+            font-family: 'Inter', sans-serif;
+            color: var(--text-dark);
+            background-color: #e9ecef;
+        }
+
+        /* --- ESTILOS PARA ESCRITORIO (PANTALLA GRANDE) --- */
+        body.desktop-view { height: 100%; width: 100%; overflow: hidden; }
+        .presentation-container {
+            display: flex; width: 100%; height: 100vh;
+            overflow-x: scroll; scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+        }
+        .slide {
+            flex: 0 0 100%; height: 100vh;
+            scroll-snap-align: start;
+            display: flex; align-items: center; justify-content: center;
+            padding: 2rem; box-sizing: border-box;
+            overflow-y: auto;
+        }
+        .nav-button {
+            position: fixed; top: 50%; transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.4); color: white;
+            border: none; border-radius: 50%;
+            width: 50px; height: 50px; font-size: 24px;
+            cursor: pointer; z-index: 100;
+            display: flex; align-items: center; justify-content: center;
+            transition: background-color 0.3s;
+        }
+        .nav-button:hover { background-color: rgba(0, 0, 0, 0.6); }
+        #prev-slide { left: 20px; }
+        #next-slide { right: 20px; }
+
+        .download-button {
+            display: inline-block; margin-top: 2rem; padding: 1rem 2rem;
+            background-color: var(--dhl-yellow); color: var(--text-dark);
+            font-weight: 700; text-decoration: none; border-radius: 8px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .download-button:hover { transform: translateY(-3px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+        .highlight-yellow { display: inline; background: linear-gradient(to top, var(--dhl-yellow) 40%, transparent 40%); padding: 0 0.25em; }
+        .dhl-logo-img { height: 80px; width: auto; margin: 0 auto 2rem auto; display: block; }
+        .card-hover-effect { transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; }
+        .card-hover-effect:hover { transform: scale(1.05); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+
+        /* --- LA MAGIA: ESTILOS PARA MÓVILES (PANTALLA PEQUEÑA) --- */
+        @media (max-width: 768px) {
+            body, body.desktop-view { height: auto; width: auto; overflow: auto; }
+            .presentation-container {
+                display: block; /* Desactiva el carrusel */
+                height: auto;
+                width: 100%;
+                overflow: visible;
+                scroll-snap-type: none;
+            }
+            .slide {
+                height: auto; /* La altura se ajusta al contenido */
+                min-height: 100vh; /* Ocupa al menos toda la pantalla */
+                flex-direction: column;
+                padding: 4rem 1rem; /* Más padding vertical, menos horizontal */
+                border-bottom: 2px solid #ddd;
+            }
+            .nav-button {
+                display: none; /* Oculta los botones de navegación */
+            }
+            /* Ajusta tamaños de texto para móvil */
+            h1 { font-size: 2.5rem !important; }
+            h2 { font-size: 2rem !important; }
+            .grid { grid-template-columns: 1fr !important; } /* Todas las rejillas a una columna */
+            .dhl-logo-img { height: 60px; }
+        }
+    </style>
+</head>
+<body class="desktop-view">
+
+    <main class="presentation-container">
+
+        <!-- Slide 1: Title / Hero Section -->
+        <section id="slide1" class="slide bg-gray-50">
+            <div class="text-center max-w-4xl p-4 md:p-8">
+                <img src="assets/dhl_logo.png" alt="DHL Logo" class="dhl-logo-img">
+                <h1 class="text-5xl md:text-6xl font-extrabold text-gray-900 mb-4 leading-tight">
+                    Project: <span class="highlight-yellow">COE Management System</span>
+                </h1>
+                <p class="text-xl md:text-3xl text-gray-700 mb-6 font-light">
+                    Transforming Auditing into Daily Operational Excellence
+                </p>
+                <div class="text-lg md:text-xl font-medium text-gray-800 mt-10">
+                    <p>Presented by: Lucas Miranda Vidal</p>
+                    <img src="assets/foto_lucas.png" alt="Lucas Miranda Vidal" class="h-32 w-32 md:h-40 md:w-40 mx-auto my-4 rounded-full shadow-lg">
+                    <p class="text-gray-600">Date: November 2025</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 2: The Current Challenge -->
+        <section id="slide2" class="slide bg-white">
+            <div class="container mx-auto max-w-7xl">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl md:text-5xl font-bold text-gray-900">The Current Challenge</h2>
+                    <p class="text-xl md:text-2xl text-red-600 mt-2">Auditing as an Event, Not a Habit</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-red-50 p-8 rounded-lg shadow-md border-l-4 border-red-500 card-hover-effect"><i class="fas fa-hand-fist text-3xl text-red-600 mb-4"></i><h3 class="text-2xl font-semibold text-gray-800 mb-3">Reactive & High-Effort Preparation</h3><p class="text-gray-700">Auditing consumes hours of preparation, diverting focus from daily operations.</p></div>
+                    <div class="bg-red-50 p-8 rounded-lg shadow-md border-l-4 border-red-500 card-hover-effect"><i class="fas fa-eye-slash text-3xl text-red-600 mb-4"></i><h3 class="text-2xl font-semibold text-gray-800 mb-3">Lack of Real-Time Visibility</h3><p class="text-gray-700">Management lacks a consolidated view of compliance status, discovering gaps too late.</p></div>
+                    <div class="bg-red-50 p-8 rounded-lg shadow-md border-l-4 border-red-500 card-hover-effect"><i class="fas fa-triangle-exclamation text-3xl text-red-600 mb-4"></i><h3 class="text-2xl font-semibold text-gray-800 mb-3">Risk of Inconsistencies</h3><p class="text-gray-700">Teams manage evidence in isolation, creating information silos.</p></div>
+                    <div class="bg-red-50 p-8 rounded-lg shadow-md border-l-4 border-red-500 card-hover-effect"><i class="fas fa-calendar-alt text-3xl text-red-600 mb-4"></i><h3 class="text-2xl font-semibold text-gray-800 mb-3">"Excellence" as an Annual Goal</h3><p class="text-gray-700">Quality is measured in peaks of effort, not as a daily cultural habit.</p></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 3: Our Solution -->
+        <section id="slide3" class="slide bg-gray-50">
+            <div class="container mx-auto max-w-7xl text-center">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Our Solution</h2>
+                <p class="text-xl md:text-2xl" style="color: var(--dhl-blue);">The Integrated COE Management System</p>
+                <p class="text-lg md:text-xl text-gray-700 mt-6 mb-12 max-w-4xl mx-auto">We translated 59 audit points and 284 verification questions into a proactive, simple, and automated tool.</p>
+                <div class="flex items-center justify-center space-x-2 md:space-x-6 my-8">
+                    <div class="p-4 bg-white border-2 border-gray-200 rounded-lg shadow-sm font-semibold text-lg" style="color: var(--dhl-blue);">Audit Framework</div>
+                    <i class="fas fa-arrow-right text-2xl text-gray-400"></i>
+                    <div class="p-4 bg-white border-4 rounded-full shadow-lg font-extrabold text-lg flex items-center justify-center w-28 h-28 md:w-36 md:h-36" style="border-color: var(--dhl-red); color: var(--dhl-blue);">COE SYSTEM</div>
+                    <i class="fas fa-arrow-right text-2xl text-gray-400"></i>
+                    <div class="p-4 bg-white border-2 border-gray-200 rounded-lg shadow-sm text-left text-lg">
+                        <ul class="space-y-2 font-semibold" style="color: var(--dhl-blue);"><li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-3"></i>Daily Tasks</li><li class="flex items-center"><i class="fas fa-chart-line text-green-500 mr-3"></i>Dashboards</li><li class="flex items-center"><i class="fas fa-file-alt text-green-500 mr-3"></i>Reports</li></ul>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-left mt-16 pt-8 border-t">
+                    <div class="p-8 bg-white rounded-lg shadow-lg card-hover-effect"><i class="fas fa-robot text-4xl mb-4" style="color: var(--dhl-blue);"></i><h3 class="text-2xl font-semibold text-gray-800 mb-3">Automates Execution</h3><p class="text-gray-700">Converts audit theory into daily tasks assigned to the correct role.</p></div>
+                    <div class="p-8 bg-white rounded-lg shadow-lg card-hover-effect"><i class="fas fa-database text-4xl mb-4" style="color: var(--dhl-blue);"></i><h3 class="text-2xl font-semibold text-gray-800 mb-3">Centralizes Management</h3><p class="text-gray-700">Acts as the "single source of truth" for all evidence and action plans.</p></div>
+                    <div class="p-8 bg-white rounded-lg shadow-lg card-hover-effect"><i class="fas fa-chart-pie text-4xl mb-4" style="color: var(--dhl-blue);"></i><h3 class="text-2xl font-semibold text-gray-800 mb-3">Visualizes Performance</h3><p class="text-gray-700">Offers a 360° view of excellence status through intelligent dashboards.</p></div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Slide 4 to 6 are ommitted for brevity, but the structure is the same -->
+        <!-- ... Paste the content of slides 4, 5, and 6 from our previous version here ... -->
+        <!-- Slide 4: Strategic Benefits and ROI -->
+        <section id="slide4" class="slide bg-white">
+            <div class="container mx-auto max-w-7xl">
+                <div class="text-center mb-12"><h2 class="text-4xl md:text-5xl font-bold text-gray-900">Strategic Benefits</h2><p class="text-xl md:text-2xl" style="color: var(--dhl-blue);">A Clear Return on Investment (ROI)</p></div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-gray-50 p-8 rounded-lg shadow-md border-l-4 card-hover-effect" style="border-color: var(--dhl-blue);"><i class="fas fa-shield-alt text-3xl mb-4" style="color: var(--dhl-blue);"></i><h3 class="text-2xl font-semibold text-gray-800 mb-3">1. From Reaction to Prevention</h3><p class="text-gray-700">Ensures daily compliance and minimizes audit findings.</p></div>
+                    <div class="bg-gray-50 p-8 rounded-lg shadow-md border-l-4 card-hover-effect" style="border-color: var(--dhl-blue);"><i class="fas fa-chart-bar text-3xl mb-4" style="color: var(--dhl-blue);"></i><h3 class="text-2xl font-semibold text-gray-800 mb-3">2. Data-Driven Governance</h3><p class="text-gray-700">Enables informed decision-making and real-time performance comparison.</p></div>
+                    <div class="bg-gray-50 p-8 rounded-lg shadow-md border-l-4 card-hover-effect" style="color: var(--dhl-blue);"><i class="fas fa-tachometer-alt text-3xl mb-4"></i><h3 class="text-2xl font-semibold text-gray-800 mb-3">3. Operational Efficiency</h3><p class="text-gray-700">Drastic reduction in man-hours for audit preparation (2 hours x day x role estimated during 3 months of preparation). Teams focus on excellence day-to-day.</p></div>
+                    <div class="bg-gray-50 p-8 rounded-lg shadow-md border-l-4 card-hover-effect" style="border-color: var(--dhl-blue);"><i class="fas fa-users-gear text-3xl mb-4" style="color: var(--dhl-blue);"></i><h3 class="text-2xl font-semibold text-gray-800 mb-3">4. Sustainable Quality Culture</h3><p class="text-gray-700">Fosters a culture where excellence is the starting point of every day.</p></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 5: Live Demonstration -->
+        <section id="slide5" class="slide bg-gray-50">
+            <div class="container mx-auto max-w-7xl text-center">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-12">Live Demonstration</h2>
+                <p class="text-lg md:text-xl text-gray-700 mb-10 max-w-4xl mx-auto">Let's see the COE System in action, highlighting three key perspectives:</p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
+                     <div class="p-8 bg-white rounded-lg shadow-lg border-b-4 card-hover-effect" style="border-color: var(--dhl-yellow);"><i class="fas fa-user text-3xl mb-4" style="color: var(--dhl-blue);"></i><h3 class="text-2xl font-semibold text-gray-800 mb-3">1. The Daily User</h3><ul class="list-disc list-inside space-y-2 text-gray-700"><li>Simple view of "My Tasks for Today."</li><li>Status and evidence management with a single click.</li></ul></div>
+                     <div class="p-8 bg-white rounded-lg shadow-lg border-b-4 card-hover-effect" style="border-color: var(--dhl-yellow);"><i class="fas fa-chart-area text-3xl mb-4" style="color: var(--dhl-blue);"></i><h3 class="text-2xl font-semibold text-gray-800 mb-3">2. The Manager</h3><ul class="list-disc list-inside space-y-2 text-gray-700"><li>Compliance dashboard with KPIs.</li><li>Actionable reports to identify deviations.</li></ul></div>
+                     <div class="p-8 bg-white rounded-lg shadow-lg border-b-4 card-hover-effect" style="border-color: var(--dhl-yellow);"><i class="fas fa-magnifying-glass text-3xl mb-4" style="color: var(--dhl-blue);"></i><h3 class="text-2xl font-semibold text-gray-800 mb-3">3. The Auditor</h3><ul class="list-disc list-inside space-y-2 text-gray-700"><li>Instant access to compliance reports and centralized evidence.</li></ul></div>
+                </div>
+                <a href="download/Sistema_Gestion_COE.xlsm" download="COE_Management_System_Demo.xlsm" class="download-button"><i class="fas fa-download mr-2"></i> Download Demo Tool</a>
+            </div>
+        </section>
+
+        <!-- Slide 6: Next Steps -->
+        <section id="slide6" class="slide bg-white">
+            <div class="container mx-auto max-w-5xl text-center">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-8">The Path to Global Excellence</h2>
+                <p class="text-lg text-gray-700 mb-8 max-w-3xl mx-auto">Our proposal for a successful and scalable implementation:</p>
+                <div class="space-y-4 text-left">
+                    <div class="p-6 bg-gray-50 rounded-lg shadow-md border-l-4 card-hover-effect" style="border-color: var(--dhl-yellow);"><h3 class="text-xl font-bold text-gray-800 mb-2"><span class="font-light">Phase 1:</span> Pilot Program (Q3 2025)</h3><ul class="list-disc list-inside space-y-1 text-gray-700"><li>Implement in Panama, Argentina, and Colombia to validate scalability.</li><li>Training, support, and KPI measurement for pilot teams.</li></ul></div>
+                    <div class="p-6 bg-gray-50 rounded-lg shadow-md border-l-4 card-hover-effect" style="border-color: var(--dhl-yellow);"><h3 class="text-xl font-bold text-gray-800 mb-2"><span class="font-light">Phase 2:</span> Validation & Feedback (Q4 2025)</h3><ul class="list-disc list-inside space-y-1 text-gray-700"><li>Gather formal feedback from pilot teams to make final adjustments.</li></ul></div>
+                    <div class="p-6 bg-gray-50 rounded-lg shadow-md border-l-4 card-hover-effect" style="border-color: var(--dhl-yellow);"><h3 class="text-xl font-bold text-gray-800 mb-2"><span class="font-light">Phase 3:</span> Global Rollout Plan (Q1 2026)</h3><ul class="list-disc list-inside space-y-1 text-gray-700"><li>Design the rollout plan for all CSA, with potential for expansion to other regions.</li></ul></div>
+                </div>
+                <div class="mt-8"><p class="text-xl font-semibold text-gray-800">We request your sponsorship to launch this pilot program and scale this innovation.</p></div>
+            </div>
+        </section>
+
+    </main>
+    
+    <button id="prev-slide" class="nav-button"><i class="fas fa-chevron-left"></i></button>
+    <button id="next-slide" class="nav-button"><i class="fas fa-chevron-right"></i></button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.querySelector('.presentation-container');
+            const prevButton = document.getElementById('prev-slide');
+            const nextButton = document.getElementById('next-slide');
+            const body = document.body;
+
+            function isMobile() {
+                return window.innerWidth <= 768;
+            }
+
+            function setupView() {
+                if (isMobile()) {
+                    body.classList.remove('desktop-view');
+                } else {
+                    body.classList.add('desktop-view');
+                }
+            }
+
+            function updateButtons() {
+                if (isMobile()) {
+                    prevButton.style.display = 'none';
+                    nextButton.style.display = 'none';
+                    return;
+                }
+                const scrollLeft = container.scrollLeft;
+                const maxScrollLeft = container.scrollWidth - container.clientWidth;
+                prevButton.style.display = scrollLeft < 5 ? 'none' : 'flex';
+                nextButton.style.display = scrollLeft > maxScrollLeft - 5 ? 'none' : 'flex';
+            }
+
+            nextButton.addEventListener('click', () => { container.scrollBy({ left: container.offsetWidth, behavior: 'smooth' }); });
+            prevButton.addEventListener('click', () => { container.scrollBy({ left: -container.offsetWidth, behavior: 'smooth' }); });
+            
+            container.addEventListener('scroll', updateButtons);
+            window.addEventListener('resize', () => {
+                setupView();
+                updateButtons();
+            });
+
+            setupView();
+            updateButtons();
+        });
+    </script>
+
+</body>
+</html>
